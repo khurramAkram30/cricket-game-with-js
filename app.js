@@ -7,7 +7,17 @@ var teams2total = 0;
 var balls = 0;
 var over = 0;
 var player = 1;
-var currentteam = 1;
+
+var toss=Math.ceil(Math.random()*2);
+var arr=["pak","ind"];
+arr[toss];
+if(toss == 1){
+    alert(arr[0]+"won the toss and elected to bat first");
+}
+else{
+    alert("team 2 won the toss and elected to bat first");
+}
+var currentteam = arr[toss];
 
 
 var pscore = document.getElementById('pscore');
@@ -19,20 +29,20 @@ var var_score = document.getElementById('score');
 function circketmatch()
 {
 
-    (function(){
-        var myDiv = document.getElementById("myDiv"),
+    // (function(){
+    //     var myDiv = document.getElementById("myDiv"),
     
-          show = function(){
-            myDiv.style.display = "block";
-            setTimeout(hide, 3000); // 5 seconds
-          },
+    //       show = function(){
+    //         myDiv.style.display = "block";
+    //         setTimeout(hide, 3000); // 5 seconds
+    //       },
     
-          hide = function(){
-            myDiv.style.display = "none";
-          };
+    //       hide = function(){
+    //         myDiv.style.display = "none";
+    //       };
     
-        show();
-      })();
+    //     show();
+    //   })();
     
 
 var rand = Math.floor(Math.random()*7);
@@ -82,6 +92,9 @@ var comment = '';
             teams2total = teamscore;
             comment += " Team "+ currentteam +"  " + over + " Over Completed on " + (parseInt(player)-1) + " Wickekts gone!! Total Score" + teams2total;
             
+            currentteam--;
+
+
         }
 
         over =0;
@@ -95,8 +108,12 @@ var comment = '';
     {
         
         
-            if (teams1total >= teams2total) { comment += "Team 1 Wins the Match...";}
-            if (teams2total >= teams1total) { comment += "Team 2 Wins the Match...";}
+            if (teams1total >= teams2total) { comment += "Team 1 Wins the Match...";
+        
+        }
+            if (teams2total >= teams1total) { comment += "Team 2 Wins the Match...";
+        
+        }
             teams1total = 0;
             teams2total = 0;        
     }
