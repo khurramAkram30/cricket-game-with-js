@@ -2,131 +2,151 @@
 
 
 var teamscore = 0;
-var teams1total = 0;
-var teams2total = 0;
+var firstTeamTotal = 0;
+var secondTeamTotal = 0;
 var balls = 0;
 var over = 0;
 var player = 1;
 
-var toss=Math.ceil(Math.random()*2);
-var arr=["pak","ind"];
+var toss = Math.floor(Math.random() * 2);
+var arr = ["pak", "ind"];
 arr[toss];
-if(toss == 1){
-    alert(arr[0]+"won the toss and elected to bat first");
+if (toss == 0) {
+    alert(arr[0] + " won the toss and elected to bat first");
 }
-else{
-    alert("team 2 won the toss and elected to bat first");
+else {
+    alert(arr[1] + "won the toss and elected to bat first");
 }
-var currentteam = arr[toss];
+var teams = arr[toss];
+var currentteam = 1;
 
 
-var pscore = document.getElementById('pscore');
-var var_team = document.getElementById('team');
-var var_players = document.getElementById('players');
-var var_score = document.getElementById('score');
+var commentory = document.getElementById('pscore');
+var team = document.getElementById('team');
+var players = document.getElementById('players');
+var score = document.getElementById('score');
+var a=0;
+var myDiv = document.getElementById("myDiv")
 
 
-function circketmatch()
-{
+// if(a == 0){
+//     var time=setTimeout(function(){
+//         myDiv.innerHTML="<img src='img/abd.gif'>"
+//     },2000);
+//     a++;
+// }
 
-    // (function(){
-    //     var myDiv = document.getElementById("myDiv"),
-    
-    //       show = function(){
-    //         myDiv.style.display = "block";
-    //         setTimeout(hide, 3000); // 5 seconds
-    //       },
-    
-    //       hide = function(){
-    //         myDiv.style.display = "none";
-    //       };
-    
-    //     show();
-    //   })();
-    
+function circketmatch() {
+    // myDiv.style.display="none";
 
-var rand = Math.floor(Math.random()*7);
-var comment = '';
 
-    
-    if(rand == 7)
-    {
+    var rand = Math.floor(Math.random() * 7);
+    var comment = '';
+
+
+    if (rand == 7) {
         teamscore++;
         comment += " No Ball...";
         comment += " ----TeamScore " + currentteam + " " + teamscore + " ";
     }
-    else{
-        balls ++;
+    else {
+        balls++;
         teamscore += rand;
 
-        comment += " Player "+player+ " runs increase by " + rand;
-        comment += " ----TeamScore " +  currentteam + " " + teamscore + " ";
+        comment += " Player " + player + " runs increase by " + rand;
+        comment += " ----TeamScore " + " team " + currentteam + " total score " + teamscore + " ";
 
-        if (rand == 0)
-        {
+        if (rand == 0) {
             player++;
             comment += "Your Player is out..";
             //comment += " total score is " + teamscore + " ";
         }
     }
 
-    
 
-    if(balls == 6){
+
+    if (balls == 6) {
         balls = 0;
         over++;
 
         comment += " " + over + " Over Completed";
     }
 
-    if (over == 2 || player == 3){
+
+    if (firstTeamTotal !==0 && secondTeamTotal !== 0) {
 
 
-        if(currentteam == 1)
-        {
-            teams1total = teamscore;
-            comment += " Team "+ currentteam +"  " + over + " Over Completed on " + (parseInt(player)-1) + " Wickekts gone!! Total Score" + teams1total;
-            currentteam++;
+        if (firstTeamTotal >= secondTeamTotal) {
+            comment += "Team 1 Wins the Match...";
+
         }
-        else if(currentteam == 2){
-            teams2total = teamscore;
-            comment += " Team "+ currentteam +"  " + over + " Over Completed on " + (parseInt(player)-1) + " Wickekts gone!! Total Score" + teams2total;
-            
+        if (secondTeamTotal >= firstTeamTotal) {
+            comment += "Team 2 Wins the Match...";
+
+        }
+        firstTeamTotal = 0;
+        secondTeamTotal = 0;
+
+    }   
+
+    if (over == 2 || player == 3) {
+
+        if (teams == arr[0]) {
+            teams = arr[1];
+        }
+        else if (teams == arr[1]) {
+            teams = arr[0];
+        }
+        if (currentteam == 1) {
+            firstTeamTotal = teamscore;
+            comment += " Team " + currentteam + "  " + over + " Over Completed on " + (parseInt(player) - 1) + " Wickekts gone!! Total Score" + firstTeamTotal;
+           commentory.innerHTML="";
+            currentteam++;
+
+        }
+        else if (currentteam == 2) {
+            secondTeamTotal = teamscore;
+            comment += " Team " + currentteam + "  " + over + " Over Completed on " + (parseInt(player) - 1) + " Wickekts gone!! Total Score" + secondTeamTotal;
+
             currentteam--;
 
 
         }
 
-        over =0;
-        player =1;
-        teamscore =0;
-        balls =0;
+        over = 0;
+        player = 1;
+        teamscore = 0;
+        balls = 0;
 
     }
-    
-    if(teams1total !==0 && teams2total !==0)
-    {
-        
-        
-            if (teams1total >= teams2total) { comment += "Team 1 Wins the Match...";
-        
-        }
-            if (teams2total >= teams1total) { comment += "Team 2 Wins the Match...";
-        
-        }
-            teams1total = 0;
-            teams2total = 0;        
-    }
+
+    // if (firstTeamTotal !== 0 && secondTeamTotal !== 0) {
+
+
+    //     if (firstTeamTotal >= secondTeamTotal) {
+    //         comment += "Team 1 Wins the Match...";
+
+    //     }
+    //     if (secondTeamTotal >= firstTeamTotal) {
+    //         comment += "Team 2 Wins the Match...";
+
+    //     }
+    //     firstTeamTotal = 0;
+    //     secondTeamTotal = 0;
+    // }
     //console.clear();
     // console.log(teamscore + ' teamscore');
     // console.log(balls + ' balls');
     // console.log(over + ' over');
     // console.log(player + ' player');
 
-    var_team.innerHTML = currentteam
-    var_players.innerHTML = player;
-    var_score.innerHTML = teamscore
 
-    pscore.innerHTML += "<br/>"+comment;
+
+
+    team.innerHTML = teams;
+    players.innerHTML = player;
+    score.innerHTML = teamscore
+
+    commentory.innerHTML += "<br/>" + comment;
     //console.log(comment);
 }
