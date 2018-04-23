@@ -74,11 +74,18 @@ function circketmatch() {
 
     if(currentteam == 2 && teamscore > firstTeamTotal){
         comment += " team 2 won the match ";
-        var a=prompt("can u play again");
+        var a=prompt(`Team 2 won the match 
+        can u play again?`);
         if(a == "yes"){
-            window.location.reload();
-        }else{
+            commentory.innerHTML="";
             
+            players.innerHTML="";
+            window.location.reload();
+
+        }else{
+            commentory.innerHTML="";
+            
+            players.innerHTML="";
             }
         
     }
@@ -121,13 +128,30 @@ function circketmatch() {
         if (firstTeamTotal >= secondTeamTotal) {
             comment += "Team 1 Wins the Match...";
 
+                    var a=prompt(`Team 1 won the match 
+        can u play again?`);
+        if(a == "yes"){
+            commentory.innerHTML="";
+            
+            players.innerHTML="";
+            window.location.reload();
+
+        }else{
+            commentory.innerHTML="";
+            
+            players.innerHTML="";
+            }
+
         }
         if (secondTeamTotal >= firstTeamTotal) {
             comment += "Team 2 Wins the Match...";
-
         }
         firstTeamTotal = 0;
         secondTeamTotal = 0;
+        commentory.innerHTML="";
+            
+        players.innerHTML="";
+
     }   
 
 
