@@ -52,7 +52,7 @@ function circketmatch() {
     else {
         balls++;
         teamscore += rand;
-
+        
         comment += " Player " + player + " runs increase by " + rand;
         comment += " ----TeamScore " + currentteam + " " + teamscore + " ";
 
@@ -64,7 +64,6 @@ function circketmatch() {
     }
 
 
-
     if (balls == 6) {
         balls = 0;
         over++;
@@ -73,20 +72,16 @@ function circketmatch() {
     }
 
 
-    if (firstTeamTotal !== 0 && secondTeamTotal !== 0) {
-
-
-        if (firstTeamTotal >= secondTeamTotal) {
-            comment += "Team 1 Wins the Match...";
-
-        }
-        if (secondTeamTotal >= firstTeamTotal) {
-            comment += "Team 2 Wins the Match...";
-
-        }
-        firstTeamTotal = 0;
-        secondTeamTotal = 0;
-    }   
+    if(currentteam == 2 && teamscore > firstTeamTotal){
+        comment += " team 2 won the match ";
+        var a=prompt("can u play again");
+        if(a == "yes"){
+            window.location.reload();
+        }else{
+            
+            }
+        
+    }
 
     if (over == 2 || player == 3) {
 
@@ -118,7 +113,8 @@ function circketmatch() {
         balls = 0;
 
     }
-
+   
+    
     if (firstTeamTotal !== 0 && secondTeamTotal !== 0) {
 
 
@@ -132,12 +128,7 @@ function circketmatch() {
         }
         firstTeamTotal = 0;
         secondTeamTotal = 0;
-    }
-    //console.clear();
-    // console.log(teamscore + ' teamscore');
-    // console.log(balls + ' balls');
-    // console.log(over + ' over');
-    // console.log(player + ' player');
+    }   
 
 
 
@@ -147,5 +138,4 @@ function circketmatch() {
     score.innerHTML = teamscore
 
     commentory.innerHTML += "<br/>" + comment;
-    //console.log(comment);
 }
